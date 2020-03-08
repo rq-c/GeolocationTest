@@ -15,6 +15,16 @@
 		39DE3648241571CE00C83598 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE3647241571CE00C83598 /* MapViewModel.swift */; };
 		39DE36682415725800C83598 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE36672415725800C83598 /* MapViewController.swift */; };
 		39DE366A2415726B00C83598 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE36692415726B00C83598 /* MapModel.swift */; };
+		39DE366C241575E100C83598 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE366B241575E100C83598 /* HistoryViewController.swift */; };
+		39DE366E241575F200C83598 /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE366D241575F200C83598 /* DetailHistoryViewController.swift */; };
+		39DE36712415791800C83598 /* GeoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39DE366F2415791800C83598 /* GeoModel.xcdatamodeld */; };
+		39DE36732415795A00C83598 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE36722415795A00C83598 /* CoreDataManager.swift */; };
+		39DE367524157E9800C83598 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367424157E9800C83598 /* HistoryViewModel.swift */; };
+		39DE367724157EA500C83598 /* DetailHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367624157EA500C83598 /* DetailHistoryViewModel.swift */; };
+		39DE367924157EB600C83598 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367824157EB600C83598 /* HistoryModel.swift */; };
+		39DE367B24157EC300C83598 /* DetailHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367A24157EC300C83598 /* DetailHistoryModel.swift */; };
+		39DE367D241580E800C83598 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367C241580E800C83598 /* CoreLocationManager.swift */; };
+		39DE367F2415814600C83598 /* FormatValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367E2415814600C83598 /* FormatValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +38,16 @@
 		39DE3647241571CE00C83598 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		39DE36672415725800C83598 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39DE36692415726B00C83598 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		39DE366B241575E100C83598 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		39DE366D241575F200C83598 /* DetailHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewController.swift; sourceTree = "<group>"; };
+		39DE36702415791800C83598 /* GeoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GeoModel.xcdatamodel; sourceTree = "<group>"; };
+		39DE36722415795A00C83598 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		39DE367424157E9800C83598 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		39DE367624157EA500C83598 /* DetailHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewModel.swift; sourceTree = "<group>"; };
+		39DE367824157EB600C83598 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		39DE367A24157EC300C83598 /* DetailHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryModel.swift; sourceTree = "<group>"; };
+		39DE367C241580E800C83598 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
+		39DE367E2415814600C83598 /* FormatValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatValues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +61,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		397B99F024158C1500E99115 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				39DE367C241580E800C83598 /* CoreLocationManager.swift */,
+				39DE367E2415814600C83598 /* FormatValues.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		397B99F124158C2200E99115 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				39DE36342415713800C83598 /* Main.storyboard */,
+				39DE36392415713A00C83598 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		397B99F224158C4600E99115 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				39DE366F2415791800C83598 /* GeoModel.xcdatamodeld */,
+				39DE36722415795A00C83598 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		39DE36242415713800C83598 = {
 			isa = PBXGroup;
 			children = (
@@ -60,14 +107,15 @@
 		39DE362F2415713800C83598 /* GeolocationTest */ = {
 			isa = PBXGroup;
 			children = (
+				397B99F224158C4600E99115 /* CoreData */,
 				39DE36442415716B00C83598 /* ViewModel */,
 				39DE36432415716500C83598 /* Model */,
 				39DE36422415715E00C83598 /* View */,
+				397B99F124158C2200E99115 /* Storyboard */,
+				397B99F024158C1500E99115 /* Utilities */,
 				39DE36452415717600C83598 /* Router.swift */,
 				39DE36302415713800C83598 /* AppDelegate.swift */,
-				39DE36342415713800C83598 /* Main.storyboard */,
 				39DE36372415713A00C83598 /* Assets.xcassets */,
-				39DE36392415713A00C83598 /* LaunchScreen.storyboard */,
 				39DE363C2415713A00C83598 /* Info.plist */,
 			);
 			path = GeolocationTest;
@@ -77,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				39DE36672415725800C83598 /* MapViewController.swift */,
+				39DE366B241575E100C83598 /* HistoryViewController.swift */,
+				39DE366D241575F200C83598 /* DetailHistoryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -85,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				39DE36692415726B00C83598 /* MapModel.swift */,
+				39DE367824157EB600C83598 /* HistoryModel.swift */,
+				39DE367A24157EC300C83598 /* DetailHistoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -93,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				39DE3647241571CE00C83598 /* MapViewModel.swift */,
+				39DE367424157E9800C83598 /* HistoryViewModel.swift */,
+				39DE367624157EA500C83598 /* DetailHistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -173,9 +227,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39DE366E241575F200C83598 /* DetailHistoryViewController.swift in Sources */,
+				39DE367B24157EC300C83598 /* DetailHistoryModel.swift in Sources */,
+				39DE36712415791800C83598 /* GeoModel.xcdatamodeld in Sources */,
 				39DE36462415717600C83598 /* Router.swift in Sources */,
 				39DE366A2415726B00C83598 /* MapModel.swift in Sources */,
+				39DE367F2415814600C83598 /* FormatValues.swift in Sources */,
+				39DE367D241580E800C83598 /* CoreLocationManager.swift in Sources */,
 				39DE36312415713800C83598 /* AppDelegate.swift in Sources */,
+				39DE367524157E9800C83598 /* HistoryViewModel.swift in Sources */,
+				39DE366C241575E100C83598 /* HistoryViewController.swift in Sources */,
+				39DE367724157EA500C83598 /* DetailHistoryViewModel.swift in Sources */,
+				39DE367924157EB600C83598 /* HistoryModel.swift in Sources */,
+				39DE36732415795A00C83598 /* CoreDataManager.swift in Sources */,
 				39DE36682415725800C83598 /* MapViewController.swift in Sources */,
 				39DE3648241571CE00C83598 /* MapViewModel.swift in Sources */,
 			);
@@ -333,7 +397,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rq-c.GeolocationTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -351,7 +415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rq-c.GeolocationTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -377,6 +441,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		39DE366F2415791800C83598 /* GeoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				39DE36702415791800C83598 /* GeoModel.xcdatamodel */,
+			);
+			currentVersion = 39DE36702415791800C83598 /* GeoModel.xcdatamodel */;
+			path = GeoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 39DE36252415713800C83598 /* Project object */;
 }
