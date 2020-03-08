@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C3O-Mg-sSE">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C3O-Mg-sSE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="537"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="194-bX-Ij2"/>
@@ -69,6 +69,7 @@
                     </view>
                     <connections>
                         <outlet property="distanceLabel" destination="7cc-PV-5PW" id="eFf-na-OCF"/>
+                        <outlet property="initButton" destination="W5V-Rr-t8O" id="Z93-zQ-YTD"/>
                         <outlet property="mapView" destination="C3O-Mg-sSE" id="uDS-2u-sVa"/>
                         <outlet property="timeLabel" destination="0TU-RV-bPe" id="P6g-Rj-ZzW"/>
                     </connections>
@@ -139,13 +140,50 @@
                     <view key="view" contentMode="scaleToFill" id="yGy-44-wOs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="VLt-ip-hO5">
+                                <rect key="frame" x="67" y="51" width="240" height="295"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VA6-ED-8db">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="125"/>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgo-1Z-7Tj">
+                                        <rect key="frame" x="0.0" y="157" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvW-Na-7sR">
+                                        <rect key="frame" x="0.0" y="209.5" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cix-Rf-NVC">
+                                        <rect key="frame" x="0.0" y="262" width="240" height="33"/>
+                                        <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Share"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VLt-ip-hO5" secondAttribute="height" multiplier="48:59" id="Y9L-Yh-YYI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VLt-ip-hO5" firstAttribute="top" secondItem="L90-Ve-8Yb" secondAttribute="top" constant="31" id="L7I-uX-fu1"/>
+                            <constraint firstItem="L90-Ve-8Yb" firstAttribute="trailing" secondItem="VLt-ip-hO5" secondAttribute="trailing" constant="68" id="gwV-CB-Px8"/>
+                            <constraint firstItem="VLt-ip-hO5" firstAttribute="leading" secondItem="L90-Ve-8Yb" secondAttribute="leading" constant="67" id="t7F-yL-5lm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="L90-Ve-8Yb"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xC8-T9-daw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41" y="708"/>
+            <point key="canvasLocation" x="40.799999999999997" y="707.49625187406298"/>
         </scene>
     </scenes>
 </document>

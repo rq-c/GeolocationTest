@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     }
     
     // MARK: - @IBOutlets
+    @IBOutlet weak var initButton: UIButton!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
@@ -38,7 +39,13 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func initRouteButtonTapped(_ sender: Any) {
-        startRun()
+        if viewModel.isInProgress == false{
+            startRun()
+            initButton.setTitle("Save route", for: .normal)
+            viewModel.changeStatusProgress()
+        }else{
+            viewModel.saveRoute(name: "Default route", distance: 0.0, time: 0.0)
+        }
     }
     
     private func startRun() {
@@ -82,6 +89,14 @@ class MapViewController: UIViewController {
         distanceLabel.text = "Distance:  \(formattedDistance)"
         timeLabel.text = "Time:  \(formattedTime)"
     }
+}
+
+extension MapViewController: MapViewModelDelegate{
+    func saveRouteSuccess() {
+        
+    }
+    
+    
 }
 
 // MARK: - Location Manager Delegate
