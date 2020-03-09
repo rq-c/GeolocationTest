@@ -11,8 +11,14 @@ import Foundation
 class HistoryViewModel {
     
     let historyModel: HistoryModel
-    
+    let coreDataManager: CoreDataManager = CoreDataManager()
+
     init(historyModel: HistoryModel) {
         self.historyModel = historyModel
     }
+    
+    func fetchRoutes()->[Route]{
+        return coreDataManager.fetchRoutes()
+    }
+    
 }

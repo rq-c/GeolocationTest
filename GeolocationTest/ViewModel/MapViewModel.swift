@@ -22,12 +22,13 @@ class MapViewModel {
         self.mapModel = mapModel
     }
     
-    func saveRoute(name: String, distance: Double, time:Double){
-        coreDataManager.createRoute(name: name, distance: distance, time: time) {
+    func saveRoute(name: String, distance: Double, time:Double, locations:[LocationModel]){
+        coreDataManager.createRoute(name: name, distance: distance, time: time, locations: locations) {
             self.mapViewModelDelegate?.saveRouteSuccess()
         }
     }
     
+
     func changeStatusProgress(){
         isInProgress = !isInProgress
     }

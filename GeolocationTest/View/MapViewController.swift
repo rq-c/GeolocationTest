@@ -14,6 +14,13 @@ class MapViewController: UIViewController {
     var viewModel: MapViewModel! {
         didSet{
             navigationItem.title = viewModel.mapModel.title
+            viewModel.mapViewModelDelegate = self
+        }
+    }
+    
+    var alertAction:AlertAction! {
+        didSet{
+            alertAction.alertActionDelegate = self
         }
     }
     
@@ -40,15 +47,18 @@ class MapViewController: UIViewController {
     
     @IBAction func initRouteButtonTapped(_ sender: Any) {
         if viewModel.isInProgress == false{
-            startRun()
+            startTour()
             initButton.setTitle("Save route", for: .normal)
             viewModel.changeStatusProgress()
         }else{
-            viewModel.saveRoute(name: "Default route", distance: 0.0, time: 0.0)
+            alertAction = AlertAction()
+            alertAction.show(view: self, title: "Route", message: "You wish finished this route?")
         }
     }
     
-    private func startRun() {
+    private func startTour() {
+        timer?.invalidate()
+        coreLocationManager.stopUpdatingLocation()
         mapView.removeOverlays(mapView.overlays)
         
         seconds = 0
@@ -58,15 +68,21 @@ class MapViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.seconds += 1
             self.updateDisplay()
-            
-            
         }
         startLocationUpdates()
     }
     
+    func restartTour(){
+        viewModel.changeStatusProgress()
+        seconds = 0
+        distance = Measurement(value: 0, unit: UnitLength.meters)
+        updateDisplay()
+        timer?.invalidate()
+        coreLocationManager.stopUpdatingLocation()
+    }
+    
     private func setupNavigation(){
         let historyItemButton = UIBarButtonItem(title: "view history", style: .plain, target: self, action: #selector(viewHistoryItemButtonAction))
-        
         navigationItem.setRightBarButton(historyItemButton, animated: true)
     }
     
@@ -83,6 +99,9 @@ class MapViewController: UIViewController {
     }
     
     private func updateDisplay() {
+        let title:String = viewModel.isInProgress == false ? "Iniciar recorrido" : "Save route"
+        initButton.setTitle(title, for: .normal)
+        
         let formattedDistance = FormatValues.distance(distance)
         let formattedTime = FormatValues.time(seconds)
         
@@ -93,7 +112,9 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MapViewModelDelegate{
     func saveRouteSuccess() {
-        
+        restartTour()
+        let detailHistory = Router.createDetailHistoryModule()
+        navigationController?.pushViewController(detailHistory, animated: true)
     }
     
     
@@ -135,3 +156,31 @@ extension MapViewController: MKMapViewDelegate {
         return lineRenderer
     }
 }
+
+extension MapViewController: AlertActionDelegate{
+    func accept() {
+        var locations:[LocationModel] = []
+        for location in locationList{
+            locations.append(LocationModel(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+        }
+        let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
+            let answer = ac.textFields![0]
+            // do something interesting with "answer" here
+            self.viewModel.saveRoute(name: answer.text!, distance: 0.0, time: 0.0, locations: locations)
+
+        }
+        
+        ac.addAction(submitAction)
+        
+        present(ac, animated: true)
+    }
+    
+    func restart() {
+        startTour()
+    }
+
+}
+

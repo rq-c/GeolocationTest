@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391406692416CD0100730483 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391406682416CD0100730483 /* AlertAction.swift */; };
+		3914066B2416F73A00730483 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3914066A2416F73A00730483 /* LocationModel.swift */; };
+		3914066E2417086E00730483 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3914066D2417086E00730483 /* Date+Extension.swift */; };
 		39DE36312415713800C83598 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE36302415713800C83598 /* AppDelegate.swift */; };
 		39DE36362415713800C83598 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39DE36342415713800C83598 /* Main.storyboard */; };
 		39DE36382415713A00C83598 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DE36372415713A00C83598 /* Assets.xcassets */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		391406682416CD0100730483 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		3914066A2416F73A00730483 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		3914066D2417086E00730483 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		39DE362D2415713800C83598 /* GeolocationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeolocationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DE36302415713800C83598 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39DE36352415713800C83598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,11 +67,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3914066C2417086100730483 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3914066D2417086E00730483 /* Date+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		397B99F024158C1500E99115 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3914066C2417086100730483 /* Extension */,
 				39DE367C241580E800C83598 /* CoreLocationManager.swift */,
 				39DE367E2415814600C83598 /* FormatValues.swift */,
+				391406682416CD0100730483 /* AlertAction.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -137,6 +153,7 @@
 				39DE36692415726B00C83598 /* MapModel.swift */,
 				39DE367824157EB600C83598 /* HistoryModel.swift */,
 				39DE367A24157EC300C83598 /* DetailHistoryModel.swift */,
+				3914066A2416F73A00730483 /* LocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +246,7 @@
 			files = (
 				39DE366E241575F200C83598 /* DetailHistoryViewController.swift in Sources */,
 				39DE367B24157EC300C83598 /* DetailHistoryModel.swift in Sources */,
+				391406692416CD0100730483 /* AlertAction.swift in Sources */,
 				39DE36712415791800C83598 /* GeoModel.xcdatamodeld in Sources */,
 				39DE36462415717600C83598 /* Router.swift in Sources */,
 				39DE366A2415726B00C83598 /* MapModel.swift in Sources */,
@@ -241,7 +259,9 @@
 				39DE367924157EB600C83598 /* HistoryModel.swift in Sources */,
 				39DE36732415795A00C83598 /* CoreDataManager.swift in Sources */,
 				39DE36682415725800C83598 /* MapViewController.swift in Sources */,
+				3914066B2416F73A00730483 /* LocationModel.swift in Sources */,
 				39DE3648241571CE00C83598 /* MapViewModel.swift in Sources */,
+				3914066E2417086E00730483 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

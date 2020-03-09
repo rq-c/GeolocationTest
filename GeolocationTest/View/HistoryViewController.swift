@@ -18,10 +18,13 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var routes: [Route] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        routes = viewModel.fetchRoutes()
+        tableView.reloadData()
     }
     
 
@@ -36,7 +39,7 @@ extension HistoryViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell.init(style: .subtitle, reuseIdentifier: "myCell")
         cell.textLabel?.text = routes[indexPath.row].name
-        cell.detailTextLabel?.text = ""//routes[indexPath.row].date
+        cell.detailTextLabel?.text = Date().toString(date: routes[indexPath.row].date!) 
         return cell
     }
     
