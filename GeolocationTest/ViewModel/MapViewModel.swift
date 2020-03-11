@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MapViewModelDelegate {
-    func saveRouteSuccess()
+    func saveRouteSuccess(route:Route)
 }
 
 class MapViewModel {
@@ -22,9 +22,9 @@ class MapViewModel {
         self.mapModel = mapModel
     }
     
-    func saveRoute(name: String, distance: Double, time:Double, locations:[LocationModel]){
-        coreDataManager.createRoute(name: name, distance: distance, time: time, locations: locations) {
-            self.mapViewModelDelegate?.saveRouteSuccess()
+    func saveRoute(name: String, distance: Double, time:Int16, locations:[LocationModel]){
+        coreDataManager.createRoute(name: name, distance: distance, time: time, locations: locations) { route in
+            self.mapViewModelDelegate?.saveRouteSuccess(route:route)
         }
     }
     

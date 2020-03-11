@@ -27,7 +27,16 @@ class CoreDataManager {
         }
     }
     
-    func createRoute(name : String, distance : Double, time : Double, locations: [LocationModel], completion: @escaping() -> Void) {
+    private func saveContext(){
+        let context = container.viewContext
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context  — \(error)")
+        }
+    }
+    
+    func createRoute(name : String, distance : Double, time : Int16, locations: [LocationModel], completion: @escaping(Route) -> Void) {
         let context = container.viewContext
         
         let route = Route(context: context)
@@ -45,20 +54,18 @@ class CoreDataManager {
                 route.addToLocations(location)
             }
         }
-
-        do {
-            try context.save()
-            print("Route \(name) saved")
-            completion()
-        } catch {
-            print("Error saving route  — \(error)")
-        }
+        
+        saveContext()
+        print("Route \(name) saved")
+        completion(route)
     }
     
     func fetchRoutes() -> [Route] {
+        let context = container.viewContext
+
         let fetchRequest : NSFetchRequest<Route> = Route.fetchRequest()
         do {
-            let result = try container.viewContext.fetch(fetchRequest)
+            let result = try context.fetch(fetchRequest)
             return result
         } catch {
             print("Error getting routes \(error)")
@@ -66,10 +73,28 @@ class CoreDataManager {
         return []
     }
     
+    func fetchRoute(id:Int16) -> Route?{
+        let context = container.viewContext
+
+        let fetchRequest : NSFetchRequest<Route> = Route.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id = %@", id)
+
+        do {
+            let result = try context.fetch(fetchRequest)
+            let route = result[0]
+            return route
+        } catch {
+            print("Error getting route \(error)")
+        }
+        return nil
+    }
+    
     func fetchTotalRoutes() -> Int16 {
+        let context = container.viewContext
+
         let fetchRequest : NSFetchRequest<Route> = Route.fetchRequest()
         do {
-            let result = try container.viewContext.fetch(fetchRequest)
+            let result = try context.fetch(fetchRequest)
             return Int16(result.count)
         } catch {
             print("Error getting routes \(error)")
@@ -77,7 +102,21 @@ class CoreDataManager {
         return 0
     }
     
-    func deleteRoute(){
-        
+    func deleteRoute(id:Int16, completion: @escaping() -> Void){
+        let context = container.viewContext
+
+        let fetchRequest : NSFetchRequest<Route> = Route.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+
+
+        do {
+            let result = try context.fetch(fetchRequest)
+            let route = result[0]
+            context.delete(route)
+            saveContext()
+            completion()
+        } catch {
+            print("Error getting route \(error)")
+        }
     }
 }

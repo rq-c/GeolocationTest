@@ -41,7 +41,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        startLocationUpdates()
         setupNavigation()
     }
     
@@ -58,13 +57,12 @@ class MapViewController: UIViewController {
     
     private func startTour() {
         timer?.invalidate()
-        coreLocationManager.stopUpdatingLocation()
         mapView.removeOverlays(mapView.overlays)
-        
         seconds = 0
         distance = Measurement(value: 0, unit: UnitLength.meters)
         locationList.removeAll()
-        
+        updateDisplay()
+
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.seconds += 1
             self.updateDisplay()
@@ -79,6 +77,8 @@ class MapViewController: UIViewController {
         updateDisplay()
         timer?.invalidate()
         coreLocationManager.stopUpdatingLocation()
+        self.mapView.removeOverlays(self.mapView.overlays)
+
     }
     
     private func setupNavigation(){
@@ -87,9 +87,11 @@ class MapViewController: UIViewController {
     }
     
     private func startLocationUpdates() {
+        coreLocationManager.requestWhenInUseAuthorization()
         coreLocationManager.delegate        = self
         coreLocationManager.activityType    = .fitness
         coreLocationManager.distanceFilter  = 10
+        coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         coreLocationManager.startUpdatingLocation()
     }
     
@@ -111,13 +113,12 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MapViewModelDelegate{
-    func saveRouteSuccess() {
+    func saveRouteSuccess(route: Route) {
         restartTour()
-        let detailHistory = Router.createDetailHistoryModule()
+        let detailHistory = Router.createDetailHistoryModule(detailHistoryModel: DetailHistoryModel(title: route.name!))
+        detailHistory.route = route
         navigationController?.pushViewController(detailHistory, animated: true)
     }
-    
-    
 }
 
 // MARK: - Location Manager Delegate
@@ -126,19 +127,17 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for newLocation in locations {
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
-            guard newLocation.horizontalAccuracy < 20 && abs(howRecent) < 10 else { continue }
+            guard newLocation.horizontalAccuracy < 100 && abs(howRecent) < 10 else { continue }
             
             if let lastLocation = locationList.last {
                 let delta = newLocation.distance(from: lastLocation)
                 distance = distance + Measurement(value: delta, unit: UnitLength.meters)
-    
                 mapView.addOverlay(MKPolyline(coordinates: [lastLocation.coordinate, newLocation.coordinate],
                                               count: 2))
                 
                 let region = MKCoordinateRegion(center: newLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
                 mapView.setRegion(region, animated: true)
             }
-            
             locationList.append(newLocation)
         }
     }
@@ -163,18 +162,16 @@ extension MapViewController: AlertActionDelegate{
         for location in locationList{
             locations.append(LocationModel(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         }
-        let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Nombre de tu recorrido:", message: nil, preferredStyle: .alert)
         ac.addTextField()
         
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
+        let submitAction = UIAlertAction(title: "Aceptar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
             // do something interesting with "answer" here
-            self.viewModel.saveRoute(name: answer.text!, distance: 0.0, time: 0.0, locations: locations)
+            self.viewModel.saveRoute(name: answer.text!, distance: self.distance.value, time: Int16(self.seconds), locations: locations)
 
         }
-        
         ac.addAction(submitAction)
-        
         present(ac, animated: true)
     }
     

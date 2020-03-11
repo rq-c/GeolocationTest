@@ -19,15 +19,11 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var routes: [Route] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         routes = viewModel.fetchRoutes()
         tableView.reloadData()
     }
-    
-
 
 }
 
@@ -44,7 +40,9 @@ extension HistoryViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailView = Router.createDetailHistoryModule()
+        let route = routes[indexPath.row]
+        let detailView = Router.createDetailHistoryModule(detailHistoryModel: DetailHistoryModel(title: route.name!))
+        detailView.route = route
         navigationController?.pushViewController(detailView, animated: true)
         
     }

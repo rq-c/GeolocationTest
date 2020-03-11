@@ -22,8 +22,14 @@ class DetailHistoryViewModel {
         self.detailHistoryModel = detailHistoryModel
     }
     
-    func deleteRoute(){
-        coreDataManager.deleteRoute()
-        self.detailHistoryViewModelDelegate?.deleteRouteSuccess()
+    func fetchRoute(id:Int16) -> Route?{
+        let route = coreDataManager.fetchRoute(id: id)
+        return route
+    }
+    
+    func deleteRoute(id:Int16){
+        coreDataManager.deleteRoute(id: id) {
+            self.detailHistoryViewModelDelegate?.deleteRouteSuccess()
+        }
     }
 }

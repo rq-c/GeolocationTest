@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         /* Setting up the root view-controller as ui-navigation-controller */
         // Override point for customization after application launch.
-        let locationManager = CoreLocationManager.shared
-        locationManager.requestWhenInUseAuthorization()
         
         let view = Router.createMapModule()        
         let navigation = UINavigationController(rootViewController: view)

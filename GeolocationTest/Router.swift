@@ -32,10 +32,10 @@ class Router{
         return view
     }
     
-    static func createDetailHistoryModule() -> DetailHistoryViewController {
+    static func createDetailHistoryModule(detailHistoryModel:DetailHistoryModel) -> DetailHistoryViewController {
         let view = mainstoryboard.instantiateViewController(withIdentifier: "id_detailhistoryviewcontroller") as! DetailHistoryViewController
         
-        let detailHistoryViewModel = DetailHistoryViewModel(detailHistoryModel: DetailHistoryModel(title: "Detail Module"))
+        let detailHistoryViewModel = DetailHistoryViewModel(detailHistoryModel: detailHistoryModel)
         view.viewModel = detailHistoryViewModel
         
         return view

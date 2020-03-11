@@ -123,11 +123,11 @@
 		39DE362F2415713800C83598 /* GeolocationTest */ = {
 			isa = PBXGroup;
 			children = (
-				397B99F224158C4600E99115 /* CoreData */,
 				39DE36442415716B00C83598 /* ViewModel */,
 				39DE36432415716500C83598 /* Model */,
 				39DE36422415715E00C83598 /* View */,
 				397B99F124158C2200E99115 /* Storyboard */,
+				397B99F224158C4600E99115 /* CoreData */,
 				397B99F024158C1500E99115 /* Utilities */,
 				39DE36452415717600C83598 /* Router.swift */,
 				39DE36302415713800C83598 /* AppDelegate.swift */,
@@ -200,6 +200,7 @@
 				TargetAttributes = {
 					39DE362C2415713800C83598 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -416,7 +417,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rq-c.GeolocationTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -434,7 +435,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rq-c.GeolocationTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
