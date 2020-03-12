@@ -10,9 +10,9 @@ import Foundation
 
 
 class DetailHistoryModel {
-    let title:String
+    let route:Route
     
-    init(title:String) {
-        self.title = title
+    init(route:Route) {
+        self.route = route
     }
 }

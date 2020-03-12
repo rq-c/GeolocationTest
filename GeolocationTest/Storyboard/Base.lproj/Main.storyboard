@@ -16,6 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1N-Vp-LMg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="612"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jwF-fB-LZT"/>
+                                </connections>
+                            </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="nsF-SD-Kc9">
                                 <rect key="frame" x="0.0" y="543.5" width="375" height="123.5"/>
                                 <subviews>
@@ -39,25 +45,22 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Iniciar recorrido"/>
+                                        <state key="normal" title="Start tour"/>
                                         <connections>
                                             <action selector="initRouteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dgo-fm-x03"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1N-Vp-LMg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="443"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jwF-fB-LZT"/>
-                                </connections>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e1N-Vp-LMg" secondAttribute="bottom" constant="55" id="9tc-HZ-zdz"/>
                             <constraint firstItem="nsF-SD-Kc9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CKS-Zs-mZx"/>
                             <constraint firstItem="nsF-SD-Kc9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PeI-AD-wIA"/>
+                            <constraint firstItem="e1N-Vp-LMg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pq5-Px-f8i"/>
+                            <constraint firstItem="e1N-Vp-LMg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gEu-5e-WZG"/>
+                            <constraint firstItem="e1N-Vp-LMg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="keQ-TA-Zft"/>
                             <constraint firstItem="nsF-SD-Kc9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tBZ-pA-ej3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -141,20 +144,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VLt-ip-hO5">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VLt-ip-hO5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VA6-ED-8db">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="228.5"/>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="K1R-TV-Co5">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="273.5"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="xlO-r5-uBn" id="ZvU-fQ-Xpt"/>
+                                        </connections>
                                     </mapView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgo-1Z-7Tj">
-                                        <rect key="frame" x="0.0" y="248.5" width="375" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="278.5" width="375" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvW-Na-7sR">
-                                        <rect key="frame" x="0.0" y="289" width="375" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="304" width="375" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -210,6 +216,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="voj-A7-6Jq" id="GI4-4L-4Av"/>
                         <outlet property="distanceLabel" destination="qgo-1Z-7Tj" id="fPP-kH-pU0"/>
+                        <outlet property="mapView" destination="K1R-TV-Co5" id="rLp-qf-4Wb"/>
                         <outlet property="timeLabel" destination="WvW-Na-7sR" id="1fc-yy-w5q"/>
                     </connections>
                 </viewController>

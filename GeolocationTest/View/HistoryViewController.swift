@@ -34,14 +34,15 @@ extension HistoryViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell.init(style: .subtitle, reuseIdentifier: "myCell")
+        let date = routes[indexPath.row].date!
         cell.textLabel?.text = routes[indexPath.row].name
-        cell.detailTextLabel?.text = Date().toString(date: routes[indexPath.row].date!) 
+        cell.detailTextLabel?.text = date.toString()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let route = routes[indexPath.row]
-        let detailView = Router.createDetailHistoryModule(detailHistoryModel: DetailHistoryModel(title: route.name!))
+        let detailView = Router.createDetailHistoryModule(detailHistoryModel: DetailHistoryModel(route: route))
         detailView.route = route
         navigationController?.pushViewController(detailView, animated: true)
         

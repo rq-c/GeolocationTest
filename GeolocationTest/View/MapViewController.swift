@@ -42,6 +42,7 @@ class MapViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         setupNavigation()
+        coreLocationManager.requestWhenInUseAuthorization()
     }
     
     @IBAction func initRouteButtonTapped(_ sender: Any) {
@@ -50,8 +51,8 @@ class MapViewController: UIViewController {
             initButton.setTitle("Save route", for: .normal)
             viewModel.changeStatusProgress()
         }else{
-            alertAction = AlertAction()
-            alertAction.show(view: self, title: "Route", message: "You wish finished this route?")
+            alertAction = AlertAction(alert: Alert(view: self, title: "", message: "You wish finished this route?"))
+            alertAction.show()
         }
     }
     
@@ -87,10 +88,7 @@ class MapViewController: UIViewController {
     }
     
     private func startLocationUpdates() {
-        coreLocationManager.requestWhenInUseAuthorization()
         coreLocationManager.delegate        = self
-        coreLocationManager.activityType    = .fitness
-        coreLocationManager.distanceFilter  = 10
         coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         coreLocationManager.startUpdatingLocation()
     }
@@ -101,7 +99,7 @@ class MapViewController: UIViewController {
     }
     
     private func updateDisplay() {
-        let title:String = viewModel.isInProgress == false ? "Iniciar recorrido" : "Save route"
+        let title:String = viewModel.isInProgress == false ? "Start tour" : "Save route"
         initButton.setTitle(title, for: .normal)
         
         let formattedDistance = FormatValues.distance(distance)
@@ -115,7 +113,7 @@ class MapViewController: UIViewController {
 extension MapViewController: MapViewModelDelegate{
     func saveRouteSuccess(route: Route) {
         restartTour()
-        let detailHistory = Router.createDetailHistoryModule(detailHistoryModel: DetailHistoryModel(title: route.name!))
+        let detailHistory = Router.createDetailHistoryModule(detailHistoryModel: DetailHistoryModel(route: route))
         detailHistory.route = route
         navigationController?.pushViewController(detailHistory, animated: true)
     }
@@ -123,7 +121,6 @@ extension MapViewController: MapViewModelDelegate{
 
 // MARK: - Location Manager Delegate
 extension MapViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for newLocation in locations {
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
@@ -146,16 +143,11 @@ extension MapViewController: CLLocationManagerDelegate {
 // MARK: - Map View Delegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let polyline = overlay as? MKPolyline else {
-            return MKOverlayRenderer(overlay: overlay)
-        }
-        let lineRenderer = MKPolylineRenderer(polyline: polyline)
-        lineRenderer.strokeColor = .blue
-        lineRenderer.lineWidth = 5
-        return lineRenderer
+        return  MapManager.renderPolyline(rendererFor: overlay)
     }
 }
 
+// MARK: - Alert Action Delegate
 extension MapViewController: AlertActionDelegate{
     func accept() {
         var locations:[LocationModel] = []

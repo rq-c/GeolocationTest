@@ -8,14 +8,25 @@
 
 import UIKit
 
-
+struct Alert {
+    let view:UIViewController
+    let title:String
+    let message:String
+}
 class AlertAction {
     
-    var alertActionDelegate: AlertActionDelegate?
+    var alert:Alert
     
-    func show(view:UIViewController, title:String, message:String){
-        let alertController = UIAlertController(title: title,
-                                                message: message,
+    init(alert:Alert){
+        self.alert = alert
+    }
+
+    var alertActionDelegate: AlertActionDelegate?
+    var alertController:UIAlertController!
+    
+    func show(){
+        alertController = UIAlertController(title: alert.title,
+                                                message: alert.message,
                                                 preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alertController.addAction(UIAlertAction(title: "Save", style: .default) { _ in
@@ -25,34 +36,30 @@ class AlertAction {
             self.alertActionDelegate?.restart()
         })
         
-        view.present(alertController, animated: true, completion: nil)
+        alert.view.present(alertController, animated: true, completion: nil)
     }
     
-    func showShareAlert(view:UIViewController, title:String?){
+    func showShareAlert(){
         var objectsToShare = [Any]()
-        
-        if let shareTitle = title {
-            objectsToShare.append(shareTitle)
-        }
+        objectsToShare.append(alert.title)
+    
         let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        view.present(activityController, animated: true, completion: nil)
+        alert.view.present(activityController, animated: true, completion: nil)
     }
     
-    func showSimpleAlert(view:UIViewController,title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message,         preferredStyle: UIAlertController.Style.alert)
+    func showSimpleAlert() {
+        alertController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { _ in
             //Cancel Action
         }))
-        alert.addAction(UIAlertAction(title: "Yes, remove",
-                                      style: UIAlertAction.Style.default,
+        alertController.addAction(UIAlertAction(title: "Yes, remove",
+                                                style: .destructive,
                                       handler: {(_: UIAlertAction!) in
                                         self.alertActionDelegate?.accept()
         }))
-        view.present(alert, animated: true, completion: nil)
+        alert.view.present(alertController, animated: true, completion: nil)
     }
-
-    
 }
 
 protocol AlertActionDelegate {
