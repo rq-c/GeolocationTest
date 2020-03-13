@@ -33,13 +33,9 @@ class DetailHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         setData()
+
     }
-    
     private func setData(){
         let distance = Measurement(value: route.distance, unit: UnitLength.meters)
         let formattedDistance = FormatValues.distance(distance)
@@ -82,13 +78,20 @@ class DetailHistoryViewController: UIViewController {
 
     
     @IBAction func shareActionTapped(_ sender: Any) {
-        alertAction = AlertAction(alert: Alert(view: self, title: "", message: ""))
-        alertAction.showShareAlert()
+        let coordinates = MapManager.getCoordinates(route: route)
+        let latitudes = coordinates!.latitudes
+        let longitudes = coordinates!.longitudes
+        
+        let image = ImageUtils().captureImage(with: mapView)
+
+        let messageShared = "My Tour\n\n\(distanceLabel.text!)\n\n\(timeLabel.text!)\n\n\(dateLabel.text!)\n\nCoordinates:\nInicial:\n   Latitud:\(latitudes.first!)\n   Longitud: \(longitudes.first!)\nFinal:\n    Latitud:\(latitudes.last!)\n    Longitud: \(longitudes.last!)"
+        alertAction = AlertAction(alert: Alert(view: self, title: "Share", message: messageShared, descriptionButton: "Share", actionSheet: .alert))
+        alertAction.showShareAlert(image:image)
     }
     
     @IBAction func removeActionTapped(_ sender: Any) {
-        alertAction = AlertAction(alert: Alert(view: self, title: "Route", message: "Are you sure you want to delete this route?"))
-        alertAction.showSimpleAlert()
+        alertAction = AlertAction(alert: Alert(view: self, title: "Route", message: "Are you sure you want to delete this route?", descriptionButton: "Yes, remove", actionSheet: .alert))
+        alertAction.show()
     }
 }
 

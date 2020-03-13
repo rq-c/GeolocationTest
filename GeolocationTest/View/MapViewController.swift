@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
             initButton.setTitle("Save route", for: .normal)
             viewModel.changeStatusProgress()
         }else{
-            alertAction = AlertAction(alert: Alert(view: self, title: "", message: "You wish finished this route?"))
+            alertAction = AlertAction(alert: Alert(view: self, title: "", message: "You wish finished this route?", descriptionButton: "Save", actionSheet: .actionSheet))
             alertAction.show()
         }
     }

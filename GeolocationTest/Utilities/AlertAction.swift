@@ -2,7 +2,7 @@
 //  AlertAction.swift
 //  GeolocationTest
 //
-//  Created by Emmauel Galindo on 09/03/20.
+//  Created by Ramón Quiñonez on 09/03/20.
 //  Copyright © 2020 rq-c. All rights reserved.
 //
 
@@ -12,6 +12,8 @@ struct Alert {
     let view:UIViewController
     let title:String
     let message:String
+    let descriptionButton:String
+    let actionSheet: UIAlertController.Style
 }
 class AlertAction {
     
@@ -27,38 +29,31 @@ class AlertAction {
     func show(){
         alertController = UIAlertController(title: alert.title,
                                                 message: alert.message,
-                                                preferredStyle: .actionSheet)
+                                                preferredStyle: alert.actionSheet)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alertController.addAction(UIAlertAction(title: "Save", style: .default) { _ in
+        alertController.addAction(UIAlertAction(title: alert.descriptionButton, style: .default) { _ in
             self.alertActionDelegate?.accept()
         })
-        alertController.addAction(UIAlertAction(title: "Restart", style: .destructive) { _ in
-            self.alertActionDelegate?.restart()
-        })
+        
+        if alert.actionSheet == .actionSheet{
+            alertController.addAction(UIAlertAction(title: "Restart", style: .destructive) { _ in
+                self.alertActionDelegate?.restart()
+            })
+        }
+
         
         alert.view.present(alertController, animated: true, completion: nil)
     }
     
-    func showShareAlert(){
+    func showShareAlert(image:UIImage?){
+        let screen = image
         var objectsToShare = [Any]()
-        objectsToShare.append(alert.title)
+        objectsToShare.append(alert.message)
+        objectsToShare.append(screen!)
+
     
         let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         alert.view.present(activityController, animated: true, completion: nil)
-    }
-    
-    func showSimpleAlert() {
-        alertController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { _ in
-            //Cancel Action
-        }))
-        alertController.addAction(UIAlertAction(title: "Yes, remove",
-                                                style: .destructive,
-                                      handler: {(_: UIAlertAction!) in
-                                        self.alertActionDelegate?.accept()
-        }))
-        alert.view.present(alertController, animated: true, completion: nil)
     }
 }
 

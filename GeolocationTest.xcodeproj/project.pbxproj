@@ -28,6 +28,7 @@
 		39DE367B24157EC300C83598 /* DetailHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367A24157EC300C83598 /* DetailHistoryModel.swift */; };
 		39DE367D241580E800C83598 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367C241580E800C83598 /* CoreLocationManager.swift */; };
 		39DE367F2415814600C83598 /* FormatValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE367E2415814600C83598 /* FormatValues.swift */; };
+		6E8A3BB6241C4A4100177450 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8A3BB5241C4A4100177450 /* ImageUtils.swift */; };
 		6E9B96BE2419A31700BF8685 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B96BD2419A31700BF8685 /* MapManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		39DE367A24157EC300C83598 /* DetailHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryModel.swift; sourceTree = "<group>"; };
 		39DE367C241580E800C83598 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
 		39DE367E2415814600C83598 /* FormatValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatValues.swift; sourceTree = "<group>"; };
+		6E8A3BB5241C4A4100177450 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		6E9B96BD2419A31700BF8685 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				39DE367E2415814600C83598 /* FormatValues.swift */,
 				391406682416CD0100730483 /* AlertAction.swift */,
 				6E9B96BD2419A31700BF8685 /* MapManager.swift */,
+				6E8A3BB5241C4A4100177450 /* ImageUtils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				39DE366E241575F200C83598 /* DetailHistoryViewController.swift in Sources */,
 				39DE367B24157EC300C83598 /* DetailHistoryModel.swift in Sources */,
 				391406692416CD0100730483 /* AlertAction.swift in Sources */,
+				6E8A3BB6241C4A4100177450 /* ImageUtils.swift in Sources */,
 				39DE36712415791800C83598 /* GeoModel.xcdatamodeld in Sources */,
 				39DE36462415717600C83598 /* Router.swift in Sources */,
 				39DE366A2415726B00C83598 /* MapModel.swift in Sources */,
